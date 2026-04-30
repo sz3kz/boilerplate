@@ -1,4 +1,4 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-hook-activate git-hook-deactivate git-update-hook git-update-ignore git-refresh
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-hook-activate git-hook-deactivate git-hook-update git-update-ignore git-refresh
 .SILENT:
 
 
@@ -287,7 +287,7 @@ git-update-ignore:
 # GIT : Hook Update
 # 	WHEN: Execute this if want to update .pre-commit-config.yaml .
 # 	What: Overwrites / Copies the .pre-commit-config.yaml template to client.
-git-update-hook:
+git-hook-update:
 	echo -n "Updating the Pre-Commit Hook from template ... "
 	cp ${TEMPLATE_GIT_PRECOMMIT_HOOK} ${DIRECTORY_ROOT_CLIENT}.pre-commit-config.yaml
 	echo "Done!"

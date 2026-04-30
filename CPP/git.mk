@@ -1,4 +1,4 @@
-.PHONY: git-refresh git-update-ignore git-hook-update git-hook-activate git-hook-deactivate
+.PHONY: git-refresh git-ignore-update git-hook-update git-hook-activate git-hook-deactivate
 .SILENT:
 
 SERVER_MAKEFILE_DIRECTORY=external/boilerplate/CPP/
@@ -6,8 +6,8 @@ SERVER_MAKEFILE_DIRECTORY=external/boilerplate/CPP/
 git-refresh:
 	cd ${SERVER_MAKEFILE_DIRECTORY} && make git-refresh
 
-git-update-ignore:
-	cd ${SERVER_MAKEFILE_DIRECTORY} && make git-update-ignore
+git-ignore-update:
+	cd ${SERVER_MAKEFILE_DIRECTORY} && make git-ignore-update
 
 git-hook-update:
 	cd ${SERVER_MAKEFILE_DIRECTORY} && make git-hook-update

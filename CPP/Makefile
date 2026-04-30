@@ -1,4 +1,4 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-hook-activate git-hook-deactivate git-hook-update git-update-ignore git-refresh
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
 .SILENT:
 
 
@@ -279,7 +279,7 @@ git-refresh:
 # GIT : Gitignore Update
 # 	WHEN: Execute this if want to update .gitignore .
 # 	What: Overwrites / Copies the .gitignore template to client.
-git-update-ignore:
+git-ignore-update:
 	echo -n "Updating .gitignore ... "
 	cp ${TEMPLATE_GITIGNORE} ${DIRECTORY_ROOT_CLIENT}.gitignore
 	echo "Done!"

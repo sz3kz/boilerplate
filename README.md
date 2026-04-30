@@ -7,6 +7,7 @@ Software used by the repository:
 * cmake
 * pre-commit
 * git
+* cppcheck
 * clang suite (???)
 
 ## How to use

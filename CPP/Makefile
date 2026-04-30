@@ -1,4 +1,4 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-update cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-prerequesites-check cmake-update cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
 .SILENT:
 
 
@@ -36,7 +36,7 @@ TEMPLATE_GITIGNORE=gitignore-template.txt
 # 		* clang;
 # 		* clang-format;
 # 		* clang-tidy.
-boilerplate-check-prerequesites:
+boilerplate-prerequesites-check:
 	echo -n "Checking Prerequesite make:          "
 	command -v make >/dev/null
 	echo "Installed!"
@@ -77,7 +77,7 @@ boilerplate-check-prerequesites:
 # 		* Creates "make/";
 # 		* Saves client's Makefile via copy to "make/";
 # 		* Creates the client's Makefile.
-boilerplate-init: boilerplate-check-prerequesites
+boilerplate-init: boilerplate-prerequesites-check
 	echo -n "Initializing Backup Directory (Ensuring It's Existence) ... "
 	mkdir -p ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_BACKUP}
 	echo "Done!"
@@ -134,7 +134,7 @@ boilerplate-update:
 # 		(*) This target will reset submodule to the version registered by
 # 		the last commit, so if user wants to revert submodule version
 # 		after Update but BEFORE commiting, this is their go-to.
-boilerplate-activate: boilerplate-check-prerequesites
+boilerplate-activate: boilerplate-prerequesites-check
 	echo -n "Activating boilerplate Submodule ... "
 	git submodule update --init
 	echo "Done!"

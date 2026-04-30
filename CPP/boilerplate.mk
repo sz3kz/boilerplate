@@ -40,7 +40,7 @@ boilerplate-check-prerequesites:
 	echo -n "Checking Prerequesite clang-tidy:    "
 	command -v clang-tidy >/dev/null
 	echo "Installed!"
-	echo -n "Checking Prerequesite cppcheck:    "
+	echo -n "Checking Prerequesite cppcheck:      "
 	command -v cppcheck >/dev/null
 	echo "Installed!"
 	echo "Prerequesite Check Ended Successfully!"

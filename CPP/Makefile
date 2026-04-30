@@ -1,4 +1,4 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
 .SILENT:
 
 
@@ -236,7 +236,7 @@ clang-refresh:
 # CLANG: Format Update
 # 	WHEN: Execute this if want to update .clang-format .
 # 	What: Overwrites / Copies the clang-format options to client.
-clang-update-format:
+clang-format-update:
 	echo -n "Updating clang-format Options ... "
 	cp ${TEMPLATE_CLANG_FORMAT} ${DIRECTORY_ROOT_CLIENT}.clang-format
 	echo "Done!"
@@ -244,7 +244,7 @@ clang-update-format:
 # CLANG: Tidy Update
 # 	WHEN: Execute this if want to update .clang-tidy .
 # 	What: Overwrites / Copies the clang-tidy options to client.
-clang-update-tidy:
+clang-tidy-update:
 	echo -n "Updating clang-tidy Options ... "
 	cp ${TEMPLATE_CLANG_TIDY} ${DIRECTORY_ROOT_CLIENT}.clang-tidy
 	echo "Done!"

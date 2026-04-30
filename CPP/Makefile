@@ -1,4 +1,4 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-rehook git-update-hook git-update-ignore git-refresh
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-update-format clang-update-tidy git-hook-activate git-update-hook git-update-ignore git-refresh
 .SILENT:
 
 
@@ -249,11 +249,11 @@ clang-update-tidy:
 	cp ${TEMPLATE_CLANG_TIDY} ${DIRECTORY_ROOT_CLIENT}.clang-tidy
 	echo "Done!"
 
-# GIT: Hook Rehook
-# 	WHEN: Execute this if want to reinstall .pre-commit-config.yaml as hook.
-# 	What: Installs it via pre-commit.
-git-rehook:
-	echo -n "Reinstalling The Pre-Commit Hook ... "
+# GIT: Hook Activation
+# 	WHEN: Execute this if want to activate .pre-commit-config.yaml as git hook.
+# 	What: Installs .pre-commit-config.yaml via pre-commit.
+git-hook-activate:
+	echo -n "Activating The Pre-Commit Hook ... "
 	cd ${DIRECTORY_ROOT_CLIENT} && pre-commit install >/dev/null
 	cd ${DIRECTORY_ROOT_CLIENT} && pre-commit install --hook-type pre-push >/dev/null
 	echo "Done!"

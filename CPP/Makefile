@@ -1,4 +1,4 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-retemplate cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-check-prerequesites cmake-update cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
 .SILENT:
 
 
@@ -182,7 +182,7 @@ boilerplate-deinit:
 # 	WHEN: Execute after Initialization in the boilerplate/CPP/ directory.
 # 		Execute this after Update introduced changes to CMakeLists-Root-Template.txt .
 # 	What: Overwrites / Copies the CMakeLists-Root-Template.txt to client.
-cmake-retemplate: 
+cmake-update: 
 	echo -n "Redeploying Template ... "
 	cp ${TEMPLATE_CMAKE_ROOT} ${DIRECTORY_ROOT_CLIENT}CMakeLists.txt
 	echo "Done!"

@@ -1,4 +1,6 @@
-.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit boilerplate-prerequesites-check cmake-update cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
+include core.mk
+
+.PHONY: boilerplate-init boilerplate-refresh boilerplate-update boilerplate-activate boilerplate-deinit cmake-update cmake-refresh ncu-activate ncu-deactivate ncu-refresh clang-refresh clang-format-update clang-tidy-update git-hook-activate git-hook-deactivate git-hook-update git-ignore-update git-refresh
 .SILENT:
 
 
@@ -9,6 +11,7 @@ MAKEFILE_NCU=ncu-compute.mk
 MAKEFILE_DOTFILES=boilerplate.mk
 MAKEFILE_LOCAL=local.mk
 MAKEFILE_CLIENT=Client.mk
+MAKEFILE_CORE=core.mk
 
 PATH_SUBMODULE=external/boilerplate
 DIRECTORY_ROOT_SUBMODULE=external/boilerplate/
@@ -25,44 +28,6 @@ TEMPLATE_GIT_PRECOMMIT_HOOK=git-precommit-hook-template.yaml
 TEMPLATE_GITIGNORE=gitignore-template.txt
 
 
-# Prerequesite Checking
-# 	WHEN: Execute this if want to check needed software for the project to work.
-# 		Should ideally be only ran as a dependency of boilerplate-init .
-# 	What: Checks if installed:
-# 		* make;
-# 		* cmake;
-# 		* pre-commit;
-# 		* git;
-# 		* clang;
-# 		* clang-format;
-# 		* clang-tidy.
-boilerplate-prerequesites-check:
-	echo -n "Checking Prerequesite make:          "
-	command -v make >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite cmake:         "
-	command -v cmake >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite pre-commit:    "
-	command -v pre-commit >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite git:           "
-	command -v git >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite clang:         "
-	command -v clang >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite clang-format:  "
-	command -v clang-format >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite clang-tidy:    "
-	command -v clang-tidy >/dev/null
-	echo "Installed!"
-	echo -n "Checking Prerequesite cppcheck:    "
-	command -v cppcheck >/dev/null
-	echo "Installed!"
-	echo "Prerequesite Check Ended Successfully!"
-
 # Initialization
 # 	NOTE: Ran when migrating a repository to use this centralized CMAKE submodule.
 # 		Should be ran by the user directly inside the boilerplate/CPP/ directory.
@@ -77,7 +42,7 @@ boilerplate-prerequesites-check:
 # 		* Creates "make/";
 # 		* Saves client's Makefile via copy to "make/";
 # 		* Creates the client's Makefile.
-boilerplate-init: boilerplate-prerequesites-check
+boilerplate-init: core-check-prerequesites
 	echo -n "Initializing Backup Directory (Ensuring It's Existence) ... "
 	mkdir -p ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_BACKUP}
 	echo "Done!"
@@ -109,6 +74,7 @@ boilerplate-init: boilerplate-prerequesites-check
 	mkdir -p ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_MAKE}
 	-mv ${DIRECTORY_ROOT_CLIENT}Makefile ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_MAKE}${MAKEFILE_LOCAL} 2>/dev/null
 	cp ${MAKEFILE_CLIENT} ${DIRECTORY_ROOT_CLIENT}Makefile
+	cp ${MAKEFILE_CORE} ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_MAKE}
 	echo "Done!"
 
 # Refresh(1)
@@ -126,6 +92,7 @@ boilerplate-refresh:
 boilerplate-update:
 	echo "Updating boilerplate Submodule:"
 	cd ${DIRECTORY_ROOT_CLIENT} && git submodule update --init --remote ${PATH_SUBMODULE}
+	cp ${MAKEFILE_CORE} ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_MAKE}
 	echo "Done!"
 
 # Activation
@@ -134,9 +101,10 @@ boilerplate-update:
 # 		(*) This target will reset submodule to the version registered by
 # 		the last commit, so if user wants to revert submodule version
 # 		after Update but BEFORE commiting, this is their go-to.
-boilerplate-activate: boilerplate-prerequesites-check
+boilerplate-activate: core-check-prerequesites
 	echo -n "Activating boilerplate Submodule ... "
 	git submodule update --init
+	cp ${MAKEFILE_CORE} ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_MAKE}
 	echo "Done!"
 
 # Deinitialization

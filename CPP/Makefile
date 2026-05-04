@@ -136,7 +136,7 @@ boilerplate-deinit:
 	rm ${DIRECTORY_ROOT_CLIENT}.gitignore # overwriting is optional, but deletion must be mandatory
 	-mv ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_BACKUP}.gitignore ${DIRECTORY_ROOT_CLIENT}.gitignore 2>/dev/null && echo "Reverted!" || echo "Deleted!"
 	echo -n "Removing Backup Directory ... "
-	rmdir ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_BACKUP}
+	-rmdir ${DIRECTORY_ROOT_CLIENT}${DIRECTORY_BACKUP}
 	echo "Done!"
 	echo -n "Uninstalling The Pre-Commit Hook ... "
 	cd ${DIRECTORY_ROOT_CLIENT} && pre-commit uninstall >/dev/null
